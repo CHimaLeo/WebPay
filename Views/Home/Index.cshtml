@@ -1,0 +1,29 @@
+﻿<div class="container">
+    <div class="row">
+        <h1>Demo Pago</h1>
+    </div>
+
+    <div class="row">
+        <label>Nombre: </label>
+        <span>Juan Perez</span>
+    </div>
+    <div class="row">
+        <label>Carrera: </label>
+        <span>Informatica</span>
+    </div>
+    <div class="row">
+        <label>Periodo: </label>
+        <span>Enero 2020 - Julio 2020</span>
+    </div>
+    <div class="row">
+        <label>Referencia: </label>
+        <span>42424242424242</span>
+    </div>
+
+    <div class="row">
+        @Html.ActionLink("Add To Cart", "https://wppsandbox.mit.com.mx/i/1UFUHNJP")
+        <button class="btn" onclick="">Pagar</button>
+        <button type="submit" id="button1" name="button1" formaction='@Url.Action("Action", "Controller")'>Save</button>
+    </div>
+
+</div>
