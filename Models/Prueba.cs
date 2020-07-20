@@ -35,9 +35,7 @@ namespace WebPay.Models
             string json = CovertXmlaJSON(desencriptada);
             dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
             var link = jsonObj["P_RESPONSE"]["nb_url "];
-            Console.WriteLine(link);
-
-
+            //ViewData["Result"] = link;
         }
 
         public string encripta(string key, string xml)
@@ -52,6 +50,16 @@ namespace WebPay.Models
             return decryptedString;
         }
 
+        public string remplaza(string cadena)
+        {
+            string cad = cadena.Replace("%20", " ");
+            cad = cad.Replace("%2B", "+");
+            cad = cad.Replace("%3D", "=");
+            cad = cad.Replace("%2F", "/");
+            cad = cad.Replace("%25", "%");
+            cad = cad.Replace("%", "25");
+            return cad;
+        }
         public string CovertJsonaXml(string json)
         {
             XNode node = Newtonsoft.Json.JsonConvert.DeserializeXNode(json,"P");
@@ -65,5 +73,19 @@ namespace WebPay.Models
             string json = Newtonsoft.Json.JsonConvert.SerializeXmlNode(doc);
             return json;
         }
+
+        public Boolean ValidaB64(string cad)
+        {
+            if (string.IsNullOrEmpty(cad) || cad.Length % 4 != 0
+            || cad.Contains(" ") || cad.Contains("\t") || cad.Contains("\r") || cad.Contains("\n")
+            || cad.Contains("%") || cad.Contains("+") || cad.Contains("="))
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
+        }
     }
 }
+
